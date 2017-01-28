@@ -1,8 +1,12 @@
 package library
 
-import "gitlab.com/mixedCase/muzk/resolve"
+import "github.com/tomahawk-player/echochamber/services"
 
+// A Library is a searchable collection of music metadata.
 type Library interface {
-	resolve.TrackSearcher
-	resolve.PlaylistSearcher
+	services.OmniSearcher
+	services.TrackSearcher
+	services.ArtistSearcher
+	services.AlbumSearcher
+	services.PlaylistSearcher
 }
