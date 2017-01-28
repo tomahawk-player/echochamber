@@ -50,7 +50,7 @@ type ResourceLocation struct {
 
 // URI returns a magnet-inspired representation of a ResourceLocation.
 func (rl *ResourceLocation) URI() string {
-	return fmt.Sprintf("muzk://?urn:%s:%s", rl.Namespace, base64.URLEncoding.EncodeToString([]byte(rl.String)))
+	return fmt.Sprintf("muzk://?urn:%s:%s", rl.Namespace, base64.URLEncoding.EncodeToString([]byte(rl.Identifier)))
 }
 
 // TrackLocation is a Track-specific ResourceLocation, mostly for facilitating type bureaucracy.
