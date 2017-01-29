@@ -21,8 +21,8 @@ type Playlist interface {
 // TrackMetadata provides useful information about a particular Track.
 type TrackMetadata interface {
 	Title() string
-	Artist() *Artist
-	Album() *Album
+	Artist() Artist
+	Album() Album
 	Year() int
 	Cover() string
 }
