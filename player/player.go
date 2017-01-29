@@ -72,7 +72,7 @@ type Player interface {
 	Tracklist() models.Playlist
 	SetTracklist(models.Playlist) error
 	Enqueue(...models.Track) error
-	Position() int
+	Position() (int, error)
 	SetPosition(msPosition int) error
 	Seek(msOffset int) error
 	Loop() uint
