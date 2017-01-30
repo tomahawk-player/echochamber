@@ -78,7 +78,7 @@ type Player interface {
 	Loop() uint
 	SetLoop(loopType uint) error
 	Shuffle() bool
-	SetShuffle(enable bool) error
+	SetShuffle(enable bool)
 	Rate() float32
 	SetRate(float32) error
 	CanGoNext() bool
