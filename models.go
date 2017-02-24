@@ -1,4 +1,4 @@
-package models
+package echochamber
 
 import (
 	"encoding/base64"

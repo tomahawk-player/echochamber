@@ -1,9 +1,7 @@
-package services
+package echochamber
 
 import (
 	"io"
-
-	"github.com/tomahawk-player/echochamber/models"
 )
 
 // A Service is any data provider tied to a particular identifiable service, such as YouTube, SoundCloud or your own machine's Filesystem.
@@ -19,24 +17,24 @@ type ConcurrentlyStreamable interface {
 // A TrackLocationResolver returns file streams for a particular TrackLocation, if the latter belongs to the resolver's associated service.
 type TrackLocationResolver interface {
 	Service
-	Resolve(location models.TrackLocation) (io.ReadCloser, error)
+	Resolve(location TrackLocation) (io.ReadCloser, error)
 }
 
 // A PlaylistResolver returns a Playlist if a valid location associated with the resolver's service is given.
 type PlaylistResolver interface {
 	Service
-	Resolve(location models.PlaylistLocation) (*models.Playlist, error)
+	Resolve(location PlaylistLocation) (*Playlist, error)
 }
 
 // A TrackSplitter helps break down sources into many ones, like YouTube albums uploaded as a single video or SoundCloud live shows/mixtapes uploaded as a single track.
 type TrackSplitter interface {
 	Service
-	SplitTracks(location models.TrackLocation) (TrackSplitResult, error)
+	SplitTracks(location TrackLocation) (TrackSplitResult, error)
 }
 
 // A TrackSplitResult contains a Playlist product of splitting a Track into many, and information from the procedure that may aid in using the splitted tracks; e.g.: YouTube description or comment including timestamps for each song in a single-video album.
 type TrackSplitResult interface {
-	models.Playlist
+	Playlist
 	Info() string
 }
 
@@ -48,31 +46,31 @@ type OmniSearcher interface {
 
 // An OmniSearchResult returns the results from a succesful OmniSearch
 type OmniSearchResult interface {
-	Tracks() []models.Track
-	Artists() []models.Artists
-	Albums() []models.Albums
+	Tracks() []Track
+	Artists() []Artist
+	Albums() []Album
 }
 
 // A TrackSearcher performs a search on its correspondant service with the given terms and returns the resulting Tracks, if any.
 type TrackSearcher interface {
 	Service
-	SearchTracks(terms string) ([]models.Track, error)
+	SearchTracks(terms string) ([]Track, error)
 }
 
 // An ArtistSearcher performs a search on its correspondant service with the given terms and returns the resulting Artists, if any.
 type ArtistSearcher interface {
 	Service
-	SearchArtists(terms string) ([]models.Artist, error)
+	SearchArtists(terms string) ([]Artist, error)
 }
 
 // An AlbumSearcher performs a search on its correspondant service with the given terms and returns the resulting Albums, if any.
 type AlbumSearcher interface {
 	Service
-	SearchAlbums(terms string) ([]models.Album, error)
+	SearchAlbums(terms string) ([]Album, error)
 }
 
 // A PlaylistSearcher searches its service for playlists associated with the given terms and returns a list of the Playlists it found, if any.
 type PlaylistSearcher interface {
 	Service
-	SearchPlaylists(terms string) ([]models.Playlist, error)
+	SearchPlaylists(terms string) ([]Playlist, error)
 }
