@@ -63,6 +63,26 @@ type PlaylistLocation struct {
 	ResourceLocation
 }
 
+// NewTrackLocation creates a new TrackLocation
+func NewTrackLocation(namespace, identifier string) TrackLocation {
+	return TrackLocation{
+		ResourceLocation{
+			Namespace:  namespace,
+			Identifier: identifier,
+		},
+	}
+}
+
+// NewPlaylistLocation creates a new PlaylistLocation
+func NewPlaylistLocation(namespace, identifier string) PlaylistLocation {
+	return PlaylistLocation{
+		ResourceLocation{
+			Namespace:  namespace,
+			Identifier: identifier,
+		},
+	}
+}
+
 // DynamicPlaylist is a very special type of Playlist that may not be considered "complete", and may add songs in different ways according to implementation logic.
 type DynamicPlaylist interface {
 	Playlist
